@@ -25,22 +25,22 @@ Future<void> _initializeManagers({bool useMock = false}) async {
 
   if (useMock) {
     ScheduleManagerMock.initializeMock();
+
+    final chatters = ChattersManager.instance;
+    chatters.add(Chatter(name: 'coucou'));
+    chatters.add(Chatter(name: 'bonjour'));
+    chatters[0].addStreamer('Pariterre');
+    chatters[1].addStreamer('Pariterre');
+    chatters[0].incrementTimeWatching(7200, of: 'Pariterre');
+    chatters[1].incrementTimeWatching(3600, of: 'Pariterre');
   }
 }
 
 void main() async {
   await _initializeIntl();
-  await _initializeManagers(useMock: true);
+  await _initializeManagers(useMock: false);
 
-  final chatters = ChattersManager.instance;
-  chatters.add(Chatter(name: 'coucou'));
-  chatters.add(Chatter(name: 'bonjour'));
-  chatters[0].addStreamer('Pariterre');
-  chatters[1].addStreamer('Pariterre');
-  chatters[0].incrementTimeWatching(7200, of: 'Pariterre');
-  chatters[1].incrementTimeWatching(3600, of: 'Pariterre');
-
-  runApp(const MyApp(isServer: true));
+  runApp(const MyApp(isServer: false));
 }
 
 class MyApp extends StatelessWidget {
