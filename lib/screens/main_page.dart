@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pomo_de_paque_website/managers/chatters_manager.dart';
 import 'package:pomo_de_paque_website/managers/schedule_manager.dart';
-import 'package:pomo_de_paque_website/managers/streamers_manager.dart';
 import 'package:pomo_de_paque_website/managers/theme_manager.dart';
 import 'package:pomo_de_paque_website/screens/introduction_page.dart';
 import 'package:pomo_de_paque_website/screens/prize_page.dart';
@@ -126,12 +125,11 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     required int maxWaitingTime,
     required int maxRetries,
   }) async {
-    final streamers = StreamersManager.instance;
     final chatters = ChattersManager.instance;
 
     // Wait for at least X seconds to load data. If none are received thed,
     // we can assume it is a fresh loading
-    if (retries < maxRetries && (streamers.isEmpty || chatters.isEmpty)) {
+    if (retries < maxRetries && chatters.isEmpty) {
       await Future.delayed(
           Duration(milliseconds: maxWaitingTime ~/ maxRetries));
       _prepareListTwitchInterface(
@@ -142,10 +140,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       return;
     }
 
-    if (widget.isServer) {
-      streamers.startWatchingChatters();
-    }
-
-    setState(() => _isInitialized = true);
+    if (widget.isServer) chatters.startMonitoring();
+    _isInitialized = true;
+    setState(() {});
   }
 }

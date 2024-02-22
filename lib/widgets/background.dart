@@ -101,7 +101,6 @@ class Background extends StatelessWidget {
               width: 900.0,
               child: Text(
                 '27 au 29 mars 2024',
-                //perimiterAlignment: EllipticText_PerimiterAlignment.top,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 36,

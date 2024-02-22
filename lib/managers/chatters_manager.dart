@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:pomo_de_paque_website/models/chatter.dart';
 import 'package:pomo_de_paque_website/models/custom_listener.dart';
 import 'package:pomo_de_paque_website/models/streamer.dart';
-import 'package:pomo_de_paque_website/models/twitch_interface.dart';
+import 'package:pomo_de_paque_website/managers/twitch_manager.dart';
 import 'package:quiver/collection.dart';
 
 class ChattersManager extends DelegatingList<Chatter> with CustomListener {
@@ -21,18 +23,38 @@ class ChattersManager extends DelegatingList<Chatter> with CustomListener {
     notifyListeners();
   }
 
-  void addChatterTime(
-      {required Streamer streamer, required int deltaTime}) async {
-    // If the user is not live, do not add time to their viewers
-    final api = TwitchInterface.instance.managers[streamer.streamerId]?.api;
-    if (api == null) return;
-    if (!(await api.isUserLive(api.streamerId))!) return;
+  void toggleIsBan(Chatter chatter) {
+    chatter.isBanned = !chatter.isBanned;
+    notifyListeners();
+  }
 
-    final currentChatters = await api.fetchChatters();
+  ///
+  /// Time in seconds between each time the chatters are updated
+  ///
+  int get deltaTime => 10;
+
+  void startMonitoring() async {
+    for (final streamerId in TwitchManager.instance.streamerIds) {
+      final streamer = Streamer(
+          id: streamerId,
+          name: await TwitchManager.instance.streamerLogin(streamerId));
+
+      Timer.periodic(Duration(seconds: deltaTime),
+          (timer) async => _addTime(streamer: streamer));
+    }
+  }
+
+  void _addTime({required Streamer streamer}) async {
+    // If the user is not live, do not add time to their viewers
+    final tm = TwitchManager.instance;
+    if (!(await tm.isStreamerLive(streamer.id))) return;
+
+    final currentChatters = await tm.fetchChatters(streamer.id);
     if (currentChatters == null) return;
 
     // Get the followers of the current streamer
-    final followers = (await api.fetchFollowers(includeStreamer: true))!;
+    final followers =
+        (await tm.fetchFollowers(streamer.id, includeStreamer: true))!;
 
     for (final chatterName in currentChatters) {
       // Check if it is a new chatter

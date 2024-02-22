@@ -88,6 +88,8 @@ class _ChatterTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final tm = ThemeManager.instance;
 
+    final watchingTime = chatter.totalWatchingTime ~/ 60;
+
     return chatter.isEmpty || (chatter.isBanned && !isServer)
         ? Container()
         : AnimatedExpandingCard(
@@ -106,14 +108,11 @@ class _ChatterTile extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
-                      'Participation : ${chatter.totalWatchingTime ~/ 60} minutes'),
+                      'Participation : $watchingTime minute${watchingTime > 1 ? 's' : ''}'),
                   if (isServer)
                     InkWell(
-                      onTap: () {
-                        final chatters = ChattersManager.instance;
-                        chatter.isBanned = !chatter.isBanned;
-                        chatters.add(chatter);
-                      },
+                      onTap: () =>
+                          ChattersManager.instance.toggleIsBan(chatter),
                       borderRadius: BorderRadius.circular(25),
                       child: Container(
                         decoration: BoxDecoration(
@@ -139,14 +138,19 @@ class _ChatterTile extends StatelessWidget {
                           'Par chaîne',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        ...chatter.streamerNames.map((streamer) => Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(streamer),
-                                Text(
-                                    '${chatter.watchingTime(of: streamer) ~/ 60} minutes'),
-                              ],
-                            )),
+                        ...chatter.streamerNames.map((streamer) {
+                          final watchingStreamer =
+                              chatter.watchingTime(of: streamer) ~/ 60;
+
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(streamer),
+                              Text(
+                                  '$watchingStreamer minute${watchingStreamer > 1 ? 's' : ''}'),
+                            ],
+                          );
+                        }),
                       ],
                     ),
                   )

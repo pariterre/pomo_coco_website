@@ -1,15 +1,15 @@
 class Streamer {
-  final String streamerId;
+  final String id;
   final String name;
 
-  Streamer({required this.streamerId, required this.name});
+  Streamer({required this.id, required this.name});
 
   Streamer.fromSerialized(map)
-      : streamerId = map['streamerId'],
+      : id = map['id'],
         name = map['name'];
 
   Map<String, dynamic> serializedMap() => {
-        'streamerId': streamerId,
+        'id': id,
         'name': name,
       };
 }

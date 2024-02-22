@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/models/twitch_interface.dart';
+import 'package:pomo_de_paque_website/managers/twitch_manager.dart';
 import 'package:pomo_de_paque_website/screens/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:twitch_manager/twitch_manager.dart';
+import 'package:twitch_manager/twitch_manager.dart' as tm;
 
 class ConnectedStreamersPage extends StatefulWidget {
   const ConnectedStreamersPage({super.key});
@@ -56,27 +56,26 @@ class _ConnectedStreamersPageState extends State<ConnectedStreamersPage> {
   }
 
   void _connectStreamer({required String saveId}) async {
-    final manager = await showDialog<TwitchManager>(
+    final manager = await showDialog<tm.TwitchManager>(
       context: context,
       builder: (context) => Dialog(
-          child: TwitchAuthenticationScreen(
-        isMockActive: TwitchInterface.instance.useMock,
-        debugPanelOptions: TwitchInterface.instance.debugOptions,
+          child: tm.TwitchAuthenticationScreen(
+        isMockActive: TwitchManager.instance.useMock,
+        debugPanelOptions: TwitchManager.instance.debugOptions,
         onFinishedConnexion: (manager) => Navigator.pop(context, manager),
-        appInfo: TwitchInterface.instance.appInfo,
+        appInfo: TwitchManager.instance.appInfo,
         saveKey: saveId,
         reload: true,
       )),
     );
     if (!mounted || manager == null) return;
 
-    await TwitchInterface.instance
-        .addStreamer(streamerId: saveId, manager: manager);
+    await TwitchManager.instance.addStreamer(id: saveId, manager: manager);
     if (!mounted) return;
 
     _saveStreamers();
     if (_streamerControllers.isNotEmpty &&
-        TwitchInterface.instance.connectedStreamerIds.length ==
+        TwitchManager.instance.streamerIds.length ==
             _streamerControllers.length) {
       Navigator.of(context).pushReplacementNamed(MainPage.route);
     }
@@ -145,7 +144,7 @@ class _ConnectedStreamersPageState extends State<ConnectedStreamersPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton(
-                  onPressed: TwitchInterface.instance.connectedStreamerIds
+                  onPressed: TwitchManager.instance.streamerIds
                           .contains(_streamerControllers[streamerIndex].text)
                       ? null
                       : () => _connectStreamer(

@@ -6,7 +6,7 @@ import 'package:pomo_de_paque_website/managers/config_manager.dart';
 import 'package:pomo_de_paque_website/managers/schedule_manager.dart';
 import 'package:pomo_de_paque_website/managers/theme_manager.dart';
 import 'package:pomo_de_paque_website/models/chatter.dart';
-import 'package:pomo_de_paque_website/models/twitch_interface.dart';
+import 'package:pomo_de_paque_website/managers/twitch_manager.dart';
 import 'package:pomo_de_paque_website/screens/connect_streamers_page.dart';
 import 'package:pomo_de_paque_website/screens/main_page.dart';
 
@@ -17,7 +17,8 @@ Future<void> _initializeIntl() async {
 }
 
 Future<void> _initializeManagers({bool useMock = false}) async {
-  TwitchInterface.instance.initialize(
+  if (useMock) TwitchManagerMock.initializeMock();
+  TwitchManager.instance.initialize(
     useMock: useMock,
     debugOptions: ConfigManager.instance.twitchDebugPanel,
     appInfo: ConfigManager.instance.twichAppInfo,
@@ -33,13 +34,13 @@ Future<void> _initializeManagers({bool useMock = false}) async {
     chatters[1].addStreamer('Pariterre');
     chatters[0].incrementTimeWatching(7200, of: 'Pariterre');
     chatters[1].incrementTimeWatching(3600, of: 'Pariterre');
+    chatters[1].isBanned = true;
   }
 }
 
 void main() async {
   await _initializeIntl();
-  await _initializeManagers(useMock: false);
-
+  await _initializeManagers(useMock: true);
   runApp(const MyApp(isServer: false));
 }
 
