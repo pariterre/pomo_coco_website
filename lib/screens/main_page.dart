@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:pomo_de_paque_website/managers/chatters_manager.dart';
@@ -59,7 +60,8 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    const double columnWidth = 500;
+    final bandWidth = min(750.0, MediaQuery.of(context).size.width * 0.9);
+    final columnWidth = bandWidth * 0.9;
 
     return Scaffold(
       body: Background(
@@ -76,7 +78,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20)),
                 ),
-                width: columnWidth * 1.5,
+                width: bandWidth,
               ),
             ),
             Column(
@@ -96,18 +98,18 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                                 isInitialized: _isInitialized,
                                 isServer: widget.isServer,
                               ),
-                              const PrizePage(maxWidth: columnWidth),
+                              PrizePage(maxWidth: columnWidth),
                             ]
                           : [
-                              const IntroductionPage(maxWidth: columnWidth),
-                              const StreamersPage(maxWidth: columnWidth),
-                              const SchedulePage(maxWidth: columnWidth),
+                              IntroductionPage(maxWidth: columnWidth),
+                              StreamersPage(maxWidth: columnWidth),
+                              SchedulePage(maxWidth: columnWidth),
                               ViewersPage(
                                 maxWidth: columnWidth,
                                 isInitialized: _isInitialized,
                                 isServer: widget.isServer,
                               ),
-                              const ThankingPage(maxWidth: columnWidth),
+                              ThankingPage(maxWidth: columnWidth),
                             ],
                     ),
                   ),

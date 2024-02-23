@@ -14,7 +14,7 @@ class ConfigManager {
   ///
   final eventName = 'Pomo de Paques - 48h - Relais';
   final facebookEventUrl = 'https://facebook.com/events/1557104731490847';
-  String youtubeEventUrlId = '91sBKUfCGpg';
+  String youtubeEventUrlId = 'eodaPPwvwxw';
 
   ///
   /// Streamers information

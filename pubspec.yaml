@@ -1,5 +1,5 @@
 name: pomo_de_paque_website
-description: "A new Flutter project."
+description: "Site web officiel du FestiFocus-48h-Relais, édition Pâques 2024"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -35,7 +35,6 @@ dependencies:
   shared_preferences: ^2.2.2
   youtube_player_iframe: ^5.0.0
   url_launcher: ^6.2.4
-  elliptic_text: ^1.0.1+9
   twitch_manager:
     path: ./plugins/twitch_manager
 

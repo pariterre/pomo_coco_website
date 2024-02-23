@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:elliptic_text/elliptic_text.dart';
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/config_manager.dart';
 import 'package:pomo_de_paque_website/managers/theme_manager.dart';
 
 class Background extends StatelessWidget {
@@ -77,41 +75,14 @@ class Background extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
           ),
           ..._images.map((e) => _MovingImage(e.$1, width: e.$2)).toList(),
+          child,
           Positioned(
             top: 30,
             child: SizedBox(
-              height: 220,
-              width: 900.0,
-              child: EllipticText(
-                text: ConfigManager.instance.eventName,
-                perimiterAlignment: EllipticText_PerimiterAlignment.top,
-                style: TextStyle(
-                  fontSize: 48,
-                  fontFamily: 'Gwibble',
-                  color: ThemeManager.instance.titleColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              width: min(700, MediaQuery.of(context).size.width * 0.8),
+              child: Image.asset('assets/images/title.png'),
             ),
           ),
-          Positioned(
-            top: 75,
-            child: SizedBox(
-              height: 220,
-              width: 900.0,
-              child: Text(
-                '27 au 29 mars 2024',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: 'Gwibble',
-                  color: ThemeManager.instance.titleColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          child,
         ]),
       ),
     );
