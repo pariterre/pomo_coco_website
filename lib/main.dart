@@ -40,7 +40,7 @@ Future<void> _initializeManagers({bool useMock = false}) async {
 
 void main() async {
   await _initializeIntl();
-  await _initializeManagers(useMock: true);
+  await _initializeManagers(useMock: false);
   runApp(const MyApp(isServer: false));
 }
 

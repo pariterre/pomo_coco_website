@@ -186,7 +186,8 @@ class _VideoWithTitle extends StatelessWidget {
               child: CircularProgressIndicator(color: tm.titleColor),
             ),
           if (snapshot.hasData)
-            YoutubeBox(controller: controller, widthRatio: 0.8),
+            YoutubeBox(
+                controller: controller, videoId: videoId, widthRatio: 0.8),
         ],
       ),
     );

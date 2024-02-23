@@ -33,6 +33,7 @@ class IntroductionPage extends StatelessWidget {
           Text('INTRODUCTION', style: Theme.of(context).textTheme.titleLarge),
           YoutubeBox(
             controller: youtubeController,
+            videoId: cm.youtubeEventUrlId,
             widthRatio: 0.8,
           ),
           const SizedBox(height: 12),

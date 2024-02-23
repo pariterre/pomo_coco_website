@@ -33,10 +33,11 @@ dependencies:
   intl: ^0.19.0
   quiver: ^3.2.1
   shared_preferences: ^2.2.2
-  youtube_player_iframe: ^5.0.0
+  youtube_player_iframe: ^5.1.1
   url_launcher: ^6.2.4
   twitch_manager:
     path: ./plugins/twitch_manager
+  device_info_plus: ^9.1.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -77,6 +78,3 @@ flutter:
     - family: Nirmala
       fonts:
       - asset: assets/fonts/Nirmala-Regular.ttf
-    - family: Gwibble
-      fonts:
-      - asset: assets/fonts/Gwibble.ttf
