@@ -40,7 +40,7 @@ class ChattersManager extends DelegatingList<Chatter>
   ///
   /// Time in seconds between each time the chatters are updated
   ///
-  int get deltaTime => 10;
+  int get deltaTime => 60;
 
   void startMonitoring() async {
     for (final streamerId in TwitchManager.instance.streamerIds) {
@@ -99,7 +99,7 @@ class ChattersManager extends DelegatingList<Chatter>
     for (final chatter in items) {
       final index = indexWhere((element) => element.name == chatter.name);
       if (index == -1) {
-        add(chatter);
+        super.add(chatter);
       } else {
         _chatters[index] = chatter;
       }
