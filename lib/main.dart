@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:pomo_coco_website/firebase_options.dart';
 import 'package:pomo_coco_website/managers/chatters_manager.dart';
 import 'package:pomo_coco_website/managers/config_manager.dart';
 import 'package:pomo_coco_website/managers/schedule_manager.dart';
@@ -17,7 +21,11 @@ Future<void> _initializeIntl() async {
 }
 
 Future<void> _initializeManagers(
-    {bool useTwitchMock = false, bool useManagerMock = false}) async {
+    {bool useTwitchMock = false,
+    bool useDatabaseEmulator = false,
+    bool useManagerMock = false}) async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   if (useTwitchMock) TwitchManagerMock.initializeMock();
   TwitchManager.instance.initialize(
     useMock: useTwitchMock,
@@ -25,23 +33,30 @@ Future<void> _initializeManagers(
     appInfo: ConfigManager.instance.twichAppInfo,
   );
 
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  if (useDatabaseEmulator = true) {
+    // FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+    FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
+  }
+
   if (useManagerMock) {
     ScheduleManagerMock.initializeMock();
 
     final chatters = ChattersManager.instance;
-    chatters.add(Chatter(name: 'coucou'));
-    chatters.add(Chatter(name: 'bonjour'));
-    chatters[0].addStreamer('Pariterre');
-    chatters[1].addStreamer('Pariterre');
-    chatters[0].incrementTimeWatching(7200, of: 'Pariterre');
-    chatters[1].incrementTimeWatching(3600, of: 'Pariterre');
-    chatters[1].isBanned = true;
+    chatters.add(Chatter(name: 'coucou')
+      ..addStreamer('Pariterre')
+      ..incrementTimeWatching(7200, of: 'Pariterre'));
+    chatters.add(Chatter(name: 'bonjour')
+      ..addStreamer('Pariterre')
+      ..incrementTimeWatching(3600, of: 'Pariterre')
+      ..isBanned = true);
   }
 }
 
 void main() async {
   await _initializeIntl();
-  await _initializeManagers(useTwitchMock: false, useManagerMock: true);
+  await _initializeManagers(
+      useTwitchMock: true, useDatabaseEmulator: true, useManagerMock: true);
   runApp(const MyApp(isServer: false));
 }
 

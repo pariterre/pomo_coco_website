@@ -1,56 +1,48 @@
-class Chatter {
+import 'package:pomo_coco_website/models/item_serializable.dart';
+
+class Chatter implements ItemSerializable {
   final String name;
+  @override
+  String get id => name;
 
   // _duration and _fromStreamers is expected to always be in sync
   bool isBanned;
-  final List<int> _duration;
-  final List<String> _fromStreamers;
+  final Map<String, int> _watchTimes;
 
-  int get totalWatchingTime => _duration.fold(0, (prev, e) => prev + e);
+  int get totalWatchingTime =>
+      _watchTimes.values.fold(0, (prev, e) => prev + e);
   int watchingTime({required String of}) {
-    final index = _fromStreamers.indexWhere((streamer) => streamer == of);
-    return _duration[index];
+    return _watchTimes[of] ?? -1;
   }
 
-  List<String> get streamerNames => [..._fromStreamers];
+  List<String> get streamerNames => [..._watchTimes.keys];
 
-  void addStreamer(String streamerName) {
-    _duration.add(0);
-    _fromStreamers.add(streamerName);
-  }
+  void addStreamer(String streamerName) => _watchTimes[streamerName] = 0;
 
   void incrementTimeWatching(int deltaTime, {required String of}) {
-    final index = _fromStreamers.indexWhere((streamer) => streamer == of);
-    _duration[index] += deltaTime;
+    if (!hasStreamer(of)) addStreamer(of);
+    _watchTimes[of] = _watchTimes[of]! + deltaTime;
   }
 
-  bool get isEmpty => _fromStreamers.isEmpty;
+  bool get isEmpty => _watchTimes.isEmpty;
   bool get isNotEmpty => !isEmpty;
 
   bool hasStreamer(String streamerName) =>
-      _fromStreamers.contains(streamerName);
+      _watchTimes.containsKey(streamerName);
   bool hasNotStreamer(String streamerName) => !hasStreamer(streamerName);
 
   Chatter({required this.name})
       : isBanned = false,
-        _duration = [],
-        _fromStreamers = [];
+        _watchTimes = {};
 
-  Chatter.fromSerialized(map)
-      : name = map['name'],
+  Chatter.fromSerialized(id, map)
+      : name = id,
         isBanned = map['isBanned'] ?? false,
-        _duration =
-            (map['duration'] as List?)?.map<int>((e) => e).toList() ?? [],
-        _fromStreamers =
-            (map['fromStreamers'] as List?)?.map<String>((e) => e).toList() ??
-                [];
+        _watchTimes = (map['watchTimes'] as Map?)
+                ?.map((key, value) => MapEntry(key as String, value as int)) ??
+            {};
 
-  Map<String, dynamic> serializedMap() {
-    return {
-      'name': name,
-      'isBanned': isBanned,
-      'duration': _duration,
-      'fromStreamers': _fromStreamers,
-    };
-  }
+  @override
+  Map<String, dynamic> get serializedMap =>
+      {'isBanned': isBanned, 'watchTimes': _watchTimes};
 }

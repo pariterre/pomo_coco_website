@@ -1,30 +1,39 @@
 import 'dart:async';
 
+import 'package:pomo_coco_website/managers/twitch_manager.dart';
 import 'package:pomo_coco_website/models/chatter.dart';
 import 'package:pomo_coco_website/models/custom_listener.dart';
+import 'package:pomo_coco_website/models/firebase_updater.dart';
 import 'package:pomo_coco_website/models/streamer.dart';
-import 'package:pomo_coco_website/managers/twitch_manager.dart';
 import 'package:quiver/collection.dart';
 
-class ChattersManager extends DelegatingList<Chatter> with CustomListener {
+class ChattersManager extends DelegatingList<Chatter>
+    with CustomListener, FirebaseUpdater<Chatter> {
   final List<Chatter> _chatters = [];
 
   @override
   List<Chatter> get delegate => _chatters;
 
+  @override
+  String get pathToData => 'chatters';
+
   // Prepare the singleton
   static ChattersManager get instance => _instance;
   static final ChattersManager _instance = ChattersManager._internal();
-  ChattersManager._internal();
+  ChattersManager._internal() {
+    initializeFirebaseUpdater();
+  }
 
   @override
   void add(Chatter value) {
     super.add(value);
+    setToDatabase(value);
     notifyListeners();
   }
 
   void toggleIsBan(Chatter chatter) {
     chatter.isBanned = !chatter.isBanned;
+    setToDatabase(chatter);
     notifyListeners();
   }
 
@@ -76,7 +85,25 @@ class ChattersManager extends DelegatingList<Chatter> with CustomListener {
       currentChatter.incrementTimeWatching(deltaTime, of: streamer.name);
 
       // Update the provider
+      setToDatabase(currentChatter);
       notifyListeners();
     }
+  }
+
+  @override
+  Chatter deserialize(String id, Map<String, dynamic> map) =>
+      Chatter.fromSerialized(id, map);
+
+  @override
+  void updateAllItems(List<Chatter> items) {
+    for (final chatter in items) {
+      final index = indexWhere((element) => element.name == chatter.name);
+      if (index == -1) {
+        add(chatter);
+      } else {
+        _chatters[index] = chatter;
+      }
+    }
+    notifyListeners();
   }
 }
