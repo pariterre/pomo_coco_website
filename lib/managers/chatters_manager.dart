@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:pomo_de_paque_website/models/chatter.dart';
-import 'package:pomo_de_paque_website/models/custom_listener.dart';
-import 'package:pomo_de_paque_website/models/streamer.dart';
-import 'package:pomo_de_paque_website/managers/twitch_manager.dart';
+import 'package:pomo_coco_website/models/chatter.dart';
+import 'package:pomo_coco_website/models/custom_listener.dart';
+import 'package:pomo_coco_website/models/streamer.dart';
+import 'package:pomo_coco_website/managers/twitch_manager.dart';
 import 'package:quiver/collection.dart';
 
 class ChattersManager extends DelegatingList<Chatter> with CustomListener {

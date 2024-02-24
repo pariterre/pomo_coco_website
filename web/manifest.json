@@ -1,11 +1,11 @@
 {
-    "name": "PomoDePâques-48h-Relais",
-    "short_name": "PomoDePâques-48h-Relais",
+    "name": "PomoCoco-48h-Relais",
+    "short_name": "PomoCoco-48h-Relais",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Le site officiel du PomoDePâques 48h Relais!",
+    "description": "Le site officiel du PomoCoco-48h-Relais!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

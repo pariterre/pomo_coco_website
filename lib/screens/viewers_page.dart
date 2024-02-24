@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/chatters_manager.dart';
-import 'package:pomo_de_paque_website/managers/schedule_manager.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
-import 'package:pomo_de_paque_website/models/chatter.dart';
-import 'package:pomo_de_paque_website/widgets/animated_expanding_card.dart';
-import 'package:pomo_de_paque_website/widgets/tab_container.dart';
+import 'package:pomo_coco_website/managers/chatters_manager.dart';
+import 'package:pomo_coco_website/managers/schedule_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/models/chatter.dart';
+import 'package:pomo_coco_website/widgets/animated_expanding_card.dart';
+import 'package:pomo_coco_website/widgets/tab_container.dart';
 
 class ViewersPage extends StatefulWidget {
   const ViewersPage(

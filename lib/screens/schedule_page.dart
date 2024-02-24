@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:pomo_de_paque_website/managers/schedule_manager.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
-import 'package:pomo_de_paque_website/models/schedule_info.dart';
-import 'package:pomo_de_paque_website/widgets/tab_container.dart';
+import 'package:pomo_coco_website/managers/schedule_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/models/schedule_info.dart';
+import 'package:pomo_coco_website/widgets/tab_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SchedulePage extends StatefulWidget {

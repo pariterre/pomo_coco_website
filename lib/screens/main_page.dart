@@ -2,17 +2,17 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/chatters_manager.dart';
-import 'package:pomo_de_paque_website/managers/schedule_manager.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
-import 'package:pomo_de_paque_website/screens/introduction_page.dart';
-import 'package:pomo_de_paque_website/screens/prize_page.dart';
-import 'package:pomo_de_paque_website/screens/schedule_page.dart';
-import 'package:pomo_de_paque_website/screens/streamers_page.dart';
-import 'package:pomo_de_paque_website/screens/thanking_page.dart';
-import 'package:pomo_de_paque_website/screens/viewers_page.dart';
-import 'package:pomo_de_paque_website/widgets/background.dart';
-import 'package:pomo_de_paque_website/widgets/menu.dart';
+import 'package:pomo_coco_website/managers/chatters_manager.dart';
+import 'package:pomo_coco_website/managers/schedule_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/screens/introduction_page.dart';
+import 'package:pomo_coco_website/screens/prize_page.dart';
+import 'package:pomo_coco_website/screens/schedule_page.dart';
+import 'package:pomo_coco_website/screens/streamers_page.dart';
+import 'package:pomo_coco_website/screens/thanking_page.dart';
+import 'package:pomo_coco_website/screens/viewers_page.dart';
+import 'package:pomo_coco_website/widgets/background.dart';
+import 'package:pomo_coco_website/widgets/menu.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key, required this.isServer});

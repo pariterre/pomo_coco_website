@@ -1,6 +1,6 @@
-# pomo_de_paque_website
+# pomo_coco_website
 
-Le site officiel du PomoDePâques 48h Relais!
+Le site officiel du PomoCoco-48h Relais!
 
 ## Getting Started
 

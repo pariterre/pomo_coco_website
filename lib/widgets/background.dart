@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
 
 class Background extends StatelessWidget {
   const Background({super.key, required this.child});
@@ -79,7 +79,7 @@ class Background extends StatelessWidget {
           Positioned(
             top: 30,
             child: SizedBox(
-              width: min(700, MediaQuery.of(context).size.width * 0.8),
+              width: min(650, MediaQuery.of(context).size.width * 0.8),
               child: Image.asset('assets/images/title.png'),
             ),
           ),

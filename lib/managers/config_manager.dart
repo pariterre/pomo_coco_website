@@ -1,4 +1,4 @@
-import 'package:pomo_de_paque_website/models/streamer_info.dart';
+import 'package:pomo_coco_website/models/streamer_info.dart';
 import 'package:twitch_manager/twitch_manager.dart';
 
 class ConfigManager {
@@ -12,7 +12,7 @@ class ConfigManager {
   ///
   /// General information
   ///
-  final eventName = 'Pomo de Paques - 48h - Relais';
+  final eventName = 'PomoCoco - 48h - Relais';
   final facebookEventUrl = 'https://facebook.com/events/1557104731490847';
   String youtubeEventUrlId = 'eodaPPwvwxw';
 
@@ -68,8 +68,8 @@ class ConfigManager {
   /// Twitch information
   ///
   final twichAppInfo = TwitchAppInfo(
-    appName: 'Pomo de Paque - 48h - Relais',
-    twitchAppId: 'XXXXXXX',
+    appName: 'PomoCoco - 48h - Relais',
+    twitchAppId: 'wuxnu9zxzhgu3noztxtgdsulk4c950',
     redirectDomain: 'twitchauthentication.pariterre.net',
     scope: [TwitchScope.chatters, TwitchScope.readFollowers],
   );

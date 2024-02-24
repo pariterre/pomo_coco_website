@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
 
 class Menu extends StatefulWidget {
   const Menu({

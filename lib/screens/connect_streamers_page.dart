@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/twitch_manager.dart';
-import 'package:pomo_de_paque_website/screens/main_page.dart';
+import 'package:pomo_coco_website/managers/twitch_manager.dart';
+import 'package:pomo_coco_website/screens/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:twitch_manager/twitch_manager.dart' as tm;
 

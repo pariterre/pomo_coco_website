@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/config_manager.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
-import 'package:pomo_de_paque_website/models/streamer_info.dart';
-import 'package:pomo_de_paque_website/widgets/animated_expanding_card.dart';
-import 'package:pomo_de_paque_website/widgets/tab_container.dart';
-import 'package:pomo_de_paque_website/widgets/youtube_box.dart';
+import 'package:pomo_coco_website/managers/config_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/models/streamer_info.dart';
+import 'package:pomo_coco_website/widgets/animated_expanding_card.dart';
+import 'package:pomo_coco_website/widgets/tab_container.dart';
+import 'package:pomo_coco_website/widgets/youtube_box.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 

@@ -1,5 +1,5 @@
-import 'package:pomo_de_paque_website/managers/config_manager.dart';
-import 'package:pomo_de_paque_website/models/schedule_info.dart';
+import 'package:pomo_coco_website/managers/config_manager.dart';
+import 'package:pomo_coco_website/models/schedule_info.dart';
 
 class ScheduleManager {
   /// Prepare the singleton

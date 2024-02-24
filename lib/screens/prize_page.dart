@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pomo_de_paque_website/managers/chatters_manager.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
-import 'package:pomo_de_paque_website/models/chatter.dart';
-import 'package:pomo_de_paque_website/widgets/tab_container.dart';
+import 'package:pomo_coco_website/managers/chatters_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/models/chatter.dart';
+import 'package:pomo_coco_website/widgets/tab_container.dart';
 
 class PrizePage extends StatefulWidget {
   const PrizePage({super.key, required this.maxWidth});

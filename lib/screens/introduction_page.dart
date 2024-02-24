@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/managers/config_manager.dart';
-import 'package:pomo_de_paque_website/widgets/tab_container.dart';
-import 'package:pomo_de_paque_website/widgets/youtube_box.dart';
+import 'package:pomo_coco_website/managers/config_manager.dart';
+import 'package:pomo_coco_website/widgets/tab_container.dart';
+import 'package:pomo_coco_website/widgets/youtube_box.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -38,10 +38,10 @@ class IntroductionPage extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           const Text(
-              'Bienvenue au Pomo-de-Pâques-48h-Relais!! Yeah!! Heu... le quoi?'),
+              'Bienvenue au PomoCoco-48h-Relais!! Yeah!! Heu... le quoi?'),
           const SizedBox(height: 12),
           const Text(
-              'Le Pomo-de-Pâques-48h-Relais! Ça ne te dit toujours rien? Je t\'explique :'),
+              'Le PomoCoco-48h-Relais! Ça ne te dit toujours rien? Je t\'explique :'),
           const SizedBox(height: 12),
           Text.rich(TextSpan(children: [
             const TextSpan(
@@ -61,7 +61,7 @@ class IntroductionPage extends StatelessWidget {
             ),
             const TextSpan(
                 text:
-                    '), «\u00a0Pâques\u00a0» car l\'événement se tient tout prêt '
+                    '), «\u00a0Coco\u00a0» car l\'événement se tient tout prêt '
                     ' de la fête des oeufs et «\u00a048h\u00a0» pour...48 heures! '
                     'Il s\'agit de la troisième édition de l\'événement de '
                     'cotravail en ligne organisé par des animateurs\u00b7trices de la communauté '

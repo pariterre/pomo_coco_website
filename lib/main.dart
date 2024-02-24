@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:pomo_de_paque_website/managers/chatters_manager.dart';
-import 'package:pomo_de_paque_website/managers/config_manager.dart';
-import 'package:pomo_de_paque_website/managers/schedule_manager.dart';
-import 'package:pomo_de_paque_website/managers/theme_manager.dart';
-import 'package:pomo_de_paque_website/models/chatter.dart';
-import 'package:pomo_de_paque_website/managers/twitch_manager.dart';
-import 'package:pomo_de_paque_website/screens/connect_streamers_page.dart';
-import 'package:pomo_de_paque_website/screens/main_page.dart';
+import 'package:pomo_coco_website/managers/chatters_manager.dart';
+import 'package:pomo_coco_website/managers/config_manager.dart';
+import 'package:pomo_coco_website/managers/schedule_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/models/chatter.dart';
+import 'package:pomo_coco_website/managers/twitch_manager.dart';
+import 'package:pomo_coco_website/screens/connect_streamers_page.dart';
+import 'package:pomo_coco_website/screens/main_page.dart';
 
 Future<void> _initializeIntl() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,15 +16,16 @@ Future<void> _initializeIntl() async {
   await initializeDateFormatting();
 }
 
-Future<void> _initializeManagers({bool useMock = false}) async {
-  if (useMock) TwitchManagerMock.initializeMock();
+Future<void> _initializeManagers(
+    {bool useTwitchMock = false, bool useManagerMock = false}) async {
+  if (useTwitchMock) TwitchManagerMock.initializeMock();
   TwitchManager.instance.initialize(
-    useMock: useMock,
+    useMock: useTwitchMock,
     debugOptions: ConfigManager.instance.twitchDebugPanel,
     appInfo: ConfigManager.instance.twichAppInfo,
   );
 
-  if (useMock) {
+  if (useManagerMock) {
     ScheduleManagerMock.initializeMock();
 
     final chatters = ChattersManager.instance;
@@ -40,7 +41,7 @@ Future<void> _initializeManagers({bool useMock = false}) async {
 
 void main() async {
   await _initializeIntl();
-  await _initializeManagers(useMock: false);
+  await _initializeManagers(useTwitchMock: false, useManagerMock: true);
   runApp(const MyApp(isServer: false));
 }
 

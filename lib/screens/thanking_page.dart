@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pomo_de_paque_website/widgets/tab_container.dart';
+import 'package:pomo_coco_website/widgets/tab_container.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ThankingPage extends StatelessWidget {
