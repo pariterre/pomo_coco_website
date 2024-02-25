@@ -18,7 +18,8 @@ abstract mixin class FirebaseUpdater<T extends ItemSerializable> {
   Future<void> initializeFirebaseUpdater() async {
     _dataRef.doc('results').get().then((doc) {
       if (doc.exists) {
-        final data = doc.data()!['all'] as Map<String, dynamic>;
+        final data = doc.data()!['all'] as Map<String, dynamic>?;
+        if (data == null) return;
         updateAllItems(
             data.keys.map((key) => deserialize(key, data[key]!)).toList());
       }

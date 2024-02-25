@@ -21,17 +21,14 @@ class ConfigManager {
   ///
   final streamersInfo = [
     StreamerInfo(
-      'Helene_Ducrocq',
+      'Pariterre',
       description:
-          'Bienvenue dans mon studio de création ! Découvre mon quotidien de '
-          'réalisatrice de films d\'animation, d\'illustratrice, d\'autrice '
-          'de livres et d\'artiste. Ici, on coworke pou parler créativité, '
-          'coups de coeur et je réalise en direct mes prochains projets '
-          '(4 films en animation, 1 livre, 1 expo).',
-      twitchUrl: 'https://twitch.tv/Helene_Ducrocq',
-      personalWebSite: 'https://www.lesmalaimes.fr',
-      presentationYoutubeId: 'wmozo8-xjTE',
-      philosophyYoutubeId: 'zxv7PvuKWfM',
+          'Étudiant en musique à une certaine époque, étudiant en kinésiologie '
+          'à une autre...Alors pourquoi pas compléter un doctorat en Science '
+          'de l\'Activité Physique chez les musiciens?',
+      twitchUrl: 'https://twitch.tv/Pariterre',
+      presentationYoutubeId: 'TJHV5L9P12k',
+      philosophyYoutubeId: 'iwt_sJ5KFWM',
     ),
     StreamerInfo(
       'Le_Sketch',
@@ -44,24 +41,39 @@ class ConfigManager {
       presentationYoutubeId: '-L-6w6j5QqA',
       philosophyYoutubeId: 'b_tMzOHvulU',
     ),
-    StreamerInfo(
-      'LizEMyers',
-      description:
-          'French author living in the US / Auteur française - Fantasy - '
-          'Urban Fantasy expatriée aux USA / Saga Mathilda Shade',
-      twitchUrl: 'https://twitch.tv/LizEMyers',
-      presentationYoutubeId: 'SkYBOe7RbFA',
-    ),
-    StreamerInfo(
-      'Pariterre',
-      description:
-          'Étudiant en musique à une certaine époque, étudiant en kinésiologie '
-          'à une autre...Alors pourquoi pas compléter un doctorat en Science '
-          'de l\'Activité Physique chez les musiciens?',
-      twitchUrl: 'https://twitch.tv/Pariterre',
-      presentationYoutubeId: 'TJHV5L9P12k',
-      philosophyYoutubeId: 'iwt_sJ5KFWM',
-    ),
+    StreamerInfo('LaQueteDuBois',
+        description:
+            'Étant concepteur ébéniste je veux vous présenter mon atelier, '
+            'partagé mon savoir et si le temps si prête jouer a quelque jeux '
+            'qui m\'inspire.',
+        twitchUrl: 'https://www.twitch.tv/LaQueteDuBois'),
+    StreamerInfo('Eli\'délivre',
+        description:
+            '👩🏻‍💻Chroniqueuse littéraire, 21 ans📚Lectures en tous genres '
+            '📍Suisse ✉️ Contact pro: elidelivre@gmail.com',
+        twitchUrl: 'https://www.twitch.tv/elidelivre'),
+    StreamerInfo('lejournaldaely',
+        description:
+            'Amoureuse des livres 📚, du café ☕, du chocolat 🍫 et des chats '
+            '😻Tricoteuse compulsive 🧶Vous trouverez ici des lives '
+            'principalement autour de la lecture (RWM, Bookhaul, Challenges '
+            'Littéraires, Bilan du mois etc), des séances papotage, des sessions '
+            'de loisirs créatifs et un peu de gaming !',
+        twitchUrl: 'https://www.twitch.tv/lejournaldaely'),
+    StreamerInfo('WayceUpenFoya',
+        description:
+            'J\'ai lancé cette chaîne pour partager ma passion pour l\'écriture, '
+            'la lecture et toutes les créations artistiques. Même si vous me '
+            'verrez aussi jouer à des jeux vidéos et discuter autour de divers '
+            'sujets, mon but est de partager avec vous ces univers qui me '
+            'bercent depuis maintenant des années.',
+        twitchUrl: 'https://www.twitch.tv/WayceUpenFoya'),
+    StreamerInfo('MemepAuteure',
+        description:
+            'Salut ! Moi c\'est MemepAuteure ! J\'ai 28 ans et je suis auteure '
+            'de fantasy. Sur ma chaîne, tu découvriras des sessions de '
+            'co-working et parfois des jeux vidéos.',
+        twitchUrl: 'https://www.twitch.tv/MemepAuteure'),
   ];
 
   ///
