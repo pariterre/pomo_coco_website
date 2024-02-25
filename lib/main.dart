@@ -11,16 +11,16 @@ import 'package:pomo_coco_website/managers/theme_manager.dart';
 import 'package:pomo_coco_website/managers/twitch_manager.dart';
 import 'package:pomo_coco_website/screens/connect_streamers_page.dart';
 import 'package:pomo_coco_website/screens/main_page.dart';
-import 'package:pomo_coco_website/screens/administartion_login_page.dart';
+import 'package:pomo_coco_website/screens/administration_login_page.dart';
 
 void main() async {
   await _initializeIntl();
   await _initializeManagers(
-    useTwitchMock: true,
+    useTwitchMock: false,
     useDatabaseEmulator: false,
-    useScheduleManagerMock: true,
+    useScheduleManagerMock: false,
   );
-  runApp(const MyApp(isAdmistration: true));
+  runApp(const MyApp(isAdmistration: false));
 }
 
 class MyApp extends StatelessWidget {
