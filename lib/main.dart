@@ -11,21 +11,22 @@ import 'package:pomo_coco_website/managers/theme_manager.dart';
 import 'package:pomo_coco_website/managers/twitch_manager.dart';
 import 'package:pomo_coco_website/screens/connect_streamers_page.dart';
 import 'package:pomo_coco_website/screens/main_page.dart';
-import 'package:pomo_coco_website/screens/server_login_page.dart';
+import 'package:pomo_coco_website/screens/administartion_login_page.dart';
 
 void main() async {
   await _initializeIntl();
   await _initializeManagers(
-      useTwitchMock: true,
-      useDatabaseEmulator: true,
-      useScheduleManagerMock: true);
-  runApp(const MyApp(isServer: true));
+    useTwitchMock: true,
+    useDatabaseEmulator: false,
+    useScheduleManagerMock: true,
+  );
+  runApp(const MyApp(isAdmistration: true));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.isServer});
+  const MyApp({super.key, required this.isAdmistration});
 
-  final bool isServer;
+  final bool isAdmistration;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +34,13 @@ class MyApp extends StatelessWidget {
       title: 'Le ${ConfigManager.instance.eventName}',
       theme: ThemeManager.instance.themeData,
       routes: {
-        ServerLoginPage.route: (context) => const ServerLoginPage(),
-        ConnectedStreamersPage.route: (context) =>
-            const ConnectedStreamersPage(),
-        MainPage.route: (context) => MainPage(isServer: isServer),
+        AdministrationLoginPage.route: (context) =>
+            const AdministrationLoginPage(),
+        ConnectStreamersPage.route: (context) => const ConnectStreamersPage(),
+        MainPage.route: (context) => MainPage(isAdmistration: isAdmistration),
       },
-      initialRoute: isServer ? ServerLoginPage.route : MainPage.route,
+      initialRoute:
+          isAdmistration ? AdministrationLoginPage.route : MainPage.route,
     );
   }
 }
@@ -49,10 +51,11 @@ Future<void> _initializeIntl() async {
   await initializeDateFormatting();
 }
 
-Future<void> _initializeManagers(
-    {bool useTwitchMock = false,
-    bool useDatabaseEmulator = false,
-    bool useScheduleManagerMock = false}) async {
+Future<void> _initializeManagers({
+  required bool useTwitchMock,
+  required bool useDatabaseEmulator,
+  required bool useScheduleManagerMock,
+}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (useTwitchMock) TwitchManagerMock.initializeMock();
@@ -63,7 +66,7 @@ Future<void> _initializeManagers(
   );
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  if (useDatabaseEmulator = true) {
+  if (useDatabaseEmulator) {
     FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   }

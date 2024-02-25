@@ -15,10 +15,10 @@ import 'package:pomo_coco_website/widgets/background.dart';
 import 'package:pomo_coco_website/widgets/menu.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key, required this.isServer});
+  const MainPage({super.key, required this.isAdmistration});
 
   static const route = '/main-page';
-  final bool isServer;
+  final bool isAdmistration;
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -26,7 +26,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   bool _isInitialized = false;
-  late final _tabMenu = widget.isServer
+  late final _tabMenu = widget.isAdmistration
       ? ['Auditeurs &\nAuditrices', 'Tirage']
       : [
           'Introduction',
@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           'Auditeurs &\nAuditrices',
           'Remerciements'
         ];
-  late final _openingTabIfEventIsFinished = widget.isServer ? 0 : 3;
+  late final _openingTabIfEventIsFinished = widget.isAdmistration ? 0 : 3;
 
   late final _tabController =
       TabController(length: _tabMenu.length, vsync: this);
@@ -91,12 +91,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                   child: Center(
                     child: TabBarView(
                       controller: _tabController,
-                      children: widget.isServer
+                      children: widget.isAdmistration
                           ? [
                               ViewersPage(
                                 maxWidth: columnWidth,
                                 isInitialized: _isInitialized,
-                                isServer: widget.isServer,
+                                isAdmistration: widget.isAdmistration,
                               ),
                               PrizePage(maxWidth: columnWidth),
                             ]
@@ -107,7 +107,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                               ViewersPage(
                                 maxWidth: columnWidth,
                                 isInitialized: _isInitialized,
-                                isServer: widget.isServer,
+                                isAdmistration: widget.isAdmistration,
                               ),
                               ThankingPage(maxWidth: columnWidth),
                             ],
@@ -142,7 +142,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       return;
     }
 
-    if (widget.isServer) chatters.startMonitoring();
+    if (widget.isAdmistration) chatters.startMonitoring();
     _isInitialized = true;
     setState(() {});
   }

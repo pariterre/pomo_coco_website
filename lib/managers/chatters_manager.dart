@@ -41,6 +41,8 @@ class ChattersManager extends DelegatingList<Chatter>
   /// Time in seconds between each time the chatters are updated
   ///
   int get deltaTime => 60;
+  @override
+  Duration get updateInterval => const Duration(seconds: 10);
 
   void startMonitoring() async {
     for (final streamerId in TwitchManager.instance.streamerIds) {

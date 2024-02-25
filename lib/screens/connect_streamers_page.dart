@@ -4,16 +4,16 @@ import 'package:pomo_coco_website/screens/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:twitch_manager/twitch_manager.dart' as tm;
 
-class ConnectedStreamersPage extends StatefulWidget {
-  const ConnectedStreamersPage({super.key});
+class ConnectStreamersPage extends StatefulWidget {
+  const ConnectStreamersPage({super.key});
 
   static const route = '/connect-streamers-page';
 
   @override
-  State<ConnectedStreamersPage> createState() => _ConnectedStreamersPageState();
+  State<ConnectStreamersPage> createState() => _ConnectStreamersPageState();
 }
 
-class _ConnectedStreamersPageState extends State<ConnectedStreamersPage> {
+class _ConnectStreamersPageState extends State<ConnectStreamersPage> {
   final List<TextEditingController> _streamerControllers = [];
 
   @override

@@ -10,12 +10,12 @@ class ViewersPage extends StatefulWidget {
   const ViewersPage(
       {super.key,
       required this.isInitialized,
-      required this.isServer,
+      required this.isAdmistration,
       required this.maxWidth});
 
   final double maxWidth;
   final bool isInitialized;
-  final bool isServer;
+  final bool isAdmistration;
 
   @override
   State<ViewersPage> createState() => _ViewersPageState();
@@ -62,7 +62,8 @@ class _ViewersPageState extends State<ViewersPage> {
 
     final sm = ScheduleManager.instance;
 
-    return (!sm.hasEventStarted && !widget.isServer) && !sm.hasEventFinished
+    return (!sm.hasEventStarted && !widget.isAdmistration) &&
+            !sm.hasEventFinished
         ? const Text(
             'Lors de l\'événement, votre temps de participation sera enregistré ici! '
             'Revenez régulièrement sur cette page pour vous comparer aux autres participantes et participants ;-)')
@@ -72,17 +73,17 @@ class _ViewersPageState extends State<ViewersPage> {
                 ? const Text('Aucun auditeur ou auditrice pour l\'instant')
                 : Column(
                     children: sortedChatters
-                        .map((e) =>
-                            _ChatterTile(chatter: e, isServer: widget.isServer))
+                        .map((e) => _ChatterTile(
+                            chatter: e, isAdmistration: widget.isAdmistration))
                         .toList()));
   }
 }
 
 class _ChatterTile extends StatelessWidget {
-  const _ChatterTile({required this.chatter, required this.isServer});
+  const _ChatterTile({required this.chatter, required this.isAdmistration});
 
   final Chatter chatter;
-  final bool isServer;
+  final bool isAdmistration;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +91,7 @@ class _ChatterTile extends StatelessWidget {
 
     final watchingTime = chatter.totalWatchingTime ~/ 60;
 
-    return chatter.isEmpty || (chatter.isBanned && !isServer)
+    return chatter.isEmpty || (chatter.isBanned && !isAdmistration)
         ? Container()
         : AnimatedExpandingCard(
             expandedColor:
@@ -109,7 +110,7 @@ class _ChatterTile extends StatelessWidget {
                   ),
                   Text(
                       'Participation : $watchingTime minute${watchingTime > 1 ? 's' : ''}'),
-                  if (isServer)
+                  if (isAdmistration)
                     InkWell(
                       onTap: () =>
                           ChattersManager.instance.toggleIsBan(chatter),

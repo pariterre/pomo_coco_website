@@ -2,16 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pomo_coco_website/screens/connect_streamers_page.dart';
 
-class ServerLoginPage extends StatefulWidget {
-  const ServerLoginPage({super.key});
+class AdministrationLoginPage extends StatefulWidget {
+  const AdministrationLoginPage({super.key});
 
   static const String route = '/server-login-page';
 
   @override
-  State<ServerLoginPage> createState() => _ServerLoginPageState();
+  State<AdministrationLoginPage> createState() =>
+      _AdministrationLoginPageState();
 }
 
-class _ServerLoginPageState extends State<ServerLoginPage> {
+class _AdministrationLoginPageState extends State<AdministrationLoginPage> {
   final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   late String _email;
@@ -26,7 +27,7 @@ class _ServerLoginPageState extends State<ServerLoginPage> {
           password: _password,
         );
         if (!mounted) return;
-        Navigator.of(context).pushNamed(ConnectedStreamersPage.route);
+        Navigator.of(context).pushNamed(ConnectStreamersPage.route);
       } catch (e) {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Connexion échouée')));

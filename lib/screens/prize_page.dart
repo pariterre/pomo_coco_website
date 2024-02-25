@@ -85,12 +85,15 @@ class _PrizePageState extends State<PrizePage> {
             ),
             const SizedBox(height: 12),
             ElevatedButton(
-                onPressed: () {
-                  int? nbParticipants = int.tryParse(nbParticipantsToDraw.text);
-                  nbParticipants ??= chatters.length;
+                onPressed: _hasPotentialWinners
+                    ? () {
+                        int? nbParticipants =
+                            int.tryParse(nbParticipantsToDraw.text);
+                        nbParticipants ??= chatters.length;
 
-                  _drawViewer(nbParticipants);
-                },
+                        _drawViewer(nbParticipants);
+                      }
+                    : null,
                 style: ElevatedButton.styleFrom(
                     backgroundColor: tm.colorButtonSelected,
                     foregroundColor: Colors.black),
@@ -100,6 +103,17 @@ class _PrizePageState extends State<PrizePage> {
                 )),
           ],
         ));
+  }
+
+  int get minimumTimeToBeEligible => 100 * 60;
+
+  bool get _hasPotentialWinners {
+    final chatters = ChattersManager.instance;
+    for (final chatter in chatters) {
+      if (!chatter.isBanned &&
+          chatter.totalWatchingTime > minimumTimeToBeEligible) return true;
+    }
+    return false;
   }
 
   void _drawViewer(int nbParticipants) {
@@ -113,7 +127,8 @@ class _PrizePageState extends State<PrizePage> {
       final winnerIndex =
           Random().nextInt(min(nbParticipants, chatters.length));
       winner = sortedChatters[winnerIndex];
-      if (winner.isBanned || winner.totalWatchingTime ~/ 60 < 100) {
+      if (winner.isBanned ||
+          winner.totalWatchingTime < minimumTimeToBeEligible) {
         winner = null;
       }
     }

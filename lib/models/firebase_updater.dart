@@ -6,8 +6,10 @@ import 'package:pomo_coco_website/models/item_serializable.dart';
 abstract mixin class FirebaseUpdater<T extends ItemSerializable> {
   /// The path to the stored data inside the database.
   String get pathToData;
+  Duration get updateInterval;
 
   bool _isInitialized = false;
+  final Map<String, Map<String, dynamic>> _pendingItems = {};
 
   T deserialize(String id, Map<String, dynamic> map);
 
@@ -16,7 +18,7 @@ abstract mixin class FirebaseUpdater<T extends ItemSerializable> {
   Future<void> initializeFirebaseUpdater() async {
     _dataRef.doc('results').get().then((doc) {
       if (doc.exists) {
-        final data = doc.data()!;
+        final data = doc.data()!['all'] as Map<String, dynamic>;
         updateAllItems(
             data.keys.map((key) => deserialize(key, data[key]!)).toList());
       }
@@ -24,12 +26,24 @@ abstract mixin class FirebaseUpdater<T extends ItemSerializable> {
 
     _dataRef.snapshots().listen((querySnapshot) {
       // Serialize the current item and update the new value
-      final data = querySnapshot.docChanges[0].doc.data();
+      if (querySnapshot.docChanges.isEmpty) return;
+
+      final data = querySnapshot.docChanges[0].doc.data()?['all']
+          as Map<String, dynamic>?;
       if (data == null) return;
+
       updateAllItems(
           data.keys.map((key) => deserialize(key, data[key]!)).toList());
     });
 
+    Timer.periodic(updateInterval, (timer) async {
+      if (_pendingItems.isEmpty) return;
+
+      await _dataRef
+          .doc('results')
+          .set({'all': _pendingItems}, SetOptions(merge: true));
+      _pendingItems.clear();
+    });
     _isInitialized = true;
   }
 
@@ -42,7 +56,7 @@ abstract mixin class FirebaseUpdater<T extends ItemSerializable> {
     }
 
     final map = value.serializedMap;
-    await _dataRef.doc('results').set({value.id: map}, SetOptions(merge: true));
+    _pendingItems[value.id] = map;
   }
 
   // Firebase Reference getters
