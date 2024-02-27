@@ -28,7 +28,7 @@ class StreamersPage extends StatelessWidget {
           children: [
             SizedBox(
                 width: double.infinity,
-                child: Text('ANIMATEUR ET ANIMATRICES',
+                child: Text('ANIMATEURS ET ANIMATRICES',
                     style: Theme.of(context).textTheme.titleLarge)),
             ...streamerInfoSorted
                 .map((e) => _StreamerCard(streamerInfo: e))
@@ -64,7 +64,6 @@ class _StreamerCard extends StatelessWidget {
               child: Text(
                 streamerInfo.twitchUrl,
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline,
                     decorationColor: Colors.black),
               )),
@@ -126,6 +125,7 @@ class _StreamerCard extends StatelessWidget {
                           videoId: streamerInfo.philosophyYoutubeId!,
                           delayBeforeLoading: 3000,
                         ),
+                      const SizedBox(height: 12),
                     ],
                   ),
                 ],

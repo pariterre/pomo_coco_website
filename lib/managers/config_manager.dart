@@ -13,7 +13,7 @@ class ConfigManager {
   /// General information
   ///
   final eventName = 'PomoCoco - 48h - Relais';
-  final facebookEventUrl = 'https://facebook.com/events/1557104731490847';
+  final facebookEventUrl = 'https://facebook.com/events/930492188475716';
   String youtubeEventUrlId = 'eodaPPwvwxw';
 
   ///
@@ -74,6 +74,21 @@ class ConfigManager {
             'de fantasy. Sur ma chaîne, tu découvriras des sessions de '
             'co-working et parfois des jeux vidéos.',
         twitchUrl: 'https://www.twitch.tv/MemepAuteure'),
+    StreamerInfo('Piickwiic',
+        description:
+            'Coucou par ici, moi c\'est Anais. J\'ai 37 ans, deux enfants, et '
+            'un chat qui répond au doux nom de Minette. C\'est même devenue la '
+            'mascotte de la chaine ! Cette chaine parle de livres, mais pas que !'
+            ' Si le coeur vous en dit, venez me faire un petit coucou pendant un '
+            'live :) Possible coupure à 19h 🤓',
+        twitchUrl: 'https://www.twitch.tv/piickwiic'),
+    StreamerInfo('AudreyAMA',
+        description:
+            'Audrey AMA, je me suis lancée sur la folle aventure de l\'écriture '
+            'depuis quelques années déjà et j\'espère que mes histoires en feront '
+            'voyager plus d\'un ! Bienvenue sur cette chaine, où l\'objectif '
+            'est de créer un espace pour écrire ensemble et se motiver.',
+        twitchUrl: 'https://www.twitch.tv/audreyama'),
   ];
 
   ///
