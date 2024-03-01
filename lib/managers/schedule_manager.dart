@@ -16,17 +16,98 @@ class ScheduleManager {
     ScheduleInfo(
         title: 'On est fébrile en attendant le Jour-J!',
         url: ConfigManager.instance.facebookEventUrl,
-        starting: DateTime.now(),
-        length: DateTime(2024, 03, 27, 9, 15).difference(DateTime.now())),
+        starting: DateTime(2024, 03),
+        length: const Duration()),
     ScheduleInfo(
-        title: 'Ouverture',
+        title: 'Cérémonie d\'ouverture',
         url: 'https://twitch.tv/pariterre',
         starting: DateTime(2024, 03, 27, 9, 15),
         length: const Duration(minutes: 45)),
     ScheduleInfo(
-        title: 'Horaire à venir',
+        title: 'Pomodoro - Éli\'délivre',
         starting: DateTime(2024, 03, 27, 10, 0),
-        length: const Duration(days: 2, hours: 1, minutes: 30)),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/elidelivre'),
+    ScheduleInfo(
+        title: 'Pause discussion',
+        starting: DateTime(2024, 03, 27, 14, 0),
+        url: 'https://twitch.tv/pariterre',
+        length: const Duration(minutes: 30)),
+    ScheduleInfo(
+        title: 'Pomodoro - lejournaldaely',
+        starting: DateTime(2024, 03, 27, 14, 30),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/lejournaldaely'),
+    ScheduleInfo(
+        title: 'Pause discussion',
+        starting: DateTime(2024, 03, 27, 18, 30),
+        url: 'https://twitch.tv/pariterre',
+        length: const Duration(minutes: 30)),
+    ScheduleInfo(
+        title: 'Pomodoro - Le_Sketch',
+        starting: DateTime(2024, 03, 27, 19, 0),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/le_sketch'),
+    ScheduleInfo(
+        title: 'Pomo-tricot',
+        starting: DateTime(2024, 03, 27, 23, 0),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/pariterre'),
+    ScheduleInfo(
+        title: 'Pomodoro - WayceUpenFoya',
+        starting: DateTime(2024, 03, 28, 3, 0),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/WayceUpenFoya'),
+    ScheduleInfo(
+        title: 'Pause discussion',
+        starting: DateTime(2024, 03, 28, 7, 0),
+        url: 'https://twitch.tv/pariterre',
+        length: const Duration(minutes: 30)),
+    ScheduleInfo(
+        title: 'Pomodoro - MemepAuteure',
+        starting: DateTime(2024, 03, 28, 7, 30),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/MemepAuteure'),
+    ScheduleInfo(
+        title: 'Table ronde',
+        starting: DateTime(2024, 03, 28, 11, 30),
+        url: 'https://twitch.tv/pariterre',
+        length: const Duration(hours: 1, minutes: 30)),
+    ScheduleInfo(
+        title: 'Pomodoro - LaQueteDuBois',
+        starting: DateTime(2024, 03, 28, 13, 0),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/LaQueteDuBois'),
+    ScheduleInfo(
+        title: 'Pause discussion',
+        starting: DateTime(2024, 03, 28, 17, 0),
+        url: 'https://twitch.tv/pariterre',
+        length: const Duration(minutes: 30)),
+    ScheduleInfo(
+        title: 'Pomodoro - Pariterre',
+        starting: DateTime(2024, 03, 28, 17, 30),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/Pariterre'),
+    ScheduleInfo(
+        title: 'Activité mystère',
+        starting: DateTime(2024, 03, 28, 21, 30),
+        length: const Duration(hours: 5, minutes: 30),
+        url: 'https://twitch.tv/pariterre'),
+    ScheduleInfo(
+        title: 'Pomodoro - AudreyAMA',
+        starting: DateTime(2024, 03, 29, 3, 0),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/AudreyAMA'),
+    ScheduleInfo(
+        title: 'Pause discussion',
+        starting: DateTime(2024, 03, 29, 7, 0),
+        url: 'https://twitch.tv/pariterre',
+        length: const Duration(minutes: 30)),
+    ScheduleInfo(
+        title: 'Pomodoro - Piickwiic',
+        starting: DateTime(2024, 03, 29, 7, 30),
+        length: const Duration(hours: 4),
+        url: 'https://twitch.tv/Piickwiic'),
     ScheduleInfo(
         title: 'Cérémonie de fermeture',
         url: 'https://twitch.tv/pariterre',

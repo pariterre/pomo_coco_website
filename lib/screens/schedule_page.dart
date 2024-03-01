@@ -4,6 +4,7 @@ import 'package:pomo_coco_website/managers/schedule_manager.dart';
 import 'package:pomo_coco_website/managers/theme_manager.dart';
 import 'package:pomo_coco_website/models/schedule_info.dart';
 import 'package:pomo_coco_website/widgets/tab_container.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SchedulePage extends StatefulWidget {
@@ -17,6 +18,25 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage> {
   bool _fromFrance = false;
+
+  @override
+  void initState() {
+    super.initState();
+    setTimeZone();
+  }
+
+  Future<void> setTimeZone() async {
+    final preferences = await SharedPreferences.getInstance();
+    _fromFrance = preferences.getBool('fromFrance') ?? false;
+    setState(() {});
+  }
+
+  void toggleTimeZone(bool fromFrance) async {
+    _fromFrance = fromFrance;
+    final preferences = await SharedPreferences.getInstance();
+    preferences.setBool('fromFrance', _fromFrance);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +69,14 @@ class _SchedulePageState extends State<SchedulePage> {
           Row(
             children: [
               InkWell(
-                onTap: () => setState(() => _fromFrance = true),
+                onTap: () => toggleTimeZone(true),
                 child: Text(
                   'France',
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       fontWeight:
-                          _fromFrance ? FontWeight.bold : FontWeight.normal),
+                          _fromFrance ? FontWeight.bold : FontWeight.normal,
+                      decoration:
+                          _fromFrance ? TextDecoration.underline : null),
                 ),
               ),
               const SizedBox(width: 8),
@@ -67,12 +89,13 @@ class _SchedulePageState extends State<SchedulePage> {
               ),
               const SizedBox(width: 8),
               InkWell(
-                  onTap: () => setState(() => _fromFrance = false),
+                  onTap: () => toggleTimeZone(false),
                   child: Text('Québec',
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: _fromFrance
-                              ? FontWeight.normal
-                              : FontWeight.bold))),
+                          fontWeight:
+                              _fromFrance ? FontWeight.normal : FontWeight.bold,
+                          decoration:
+                              _fromFrance ? null : TextDecoration.underline))),
             ],
           )
         ],
@@ -116,26 +139,27 @@ class _StreamerTile extends StatelessWidget {
                     info.title,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
-                  Text(
-                      '${dateFormat.format(info.starting.add(Duration(hours: fromFrance ? 6 : 0)))} '
-                      '/ '
-                      '${dateFormat.format(info.ending.add(Duration(hours: fromFrance ? 6 : 0)))}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(fontWeight: FontWeight.normal)),
-                  const SizedBox(height: 8),
-                  if (info.url != null)
-                    InkWell(
-                        onTap: () {
-                          launchUrl(Uri.parse(info.url!));
-                        },
-                        child: Text(
-                          info.url!,
-                          style: const TextStyle(
-                              decoration: TextDecoration.underline,
-                              decorationColor: Colors.black),
-                        )),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 24.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(dateFormat.format(info.starting
+                            .add(Duration(hours: fromFrance ? 5 : 0)))),
+                        if (info.url != null)
+                          InkWell(
+                              onTap: () {
+                                launchUrl(Uri.parse(info.url!));
+                              },
+                              child: Text(
+                                info.url!,
+                                style: const TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.black),
+                              )),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
