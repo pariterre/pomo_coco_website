@@ -18,6 +18,17 @@ class _AdministrationLoginPageState extends State<AdministrationLoginPage> {
   late String _email;
   late String _password;
 
+  @override
+  void initState() {
+    super.initState();
+    // If the user is already signed in, redirect to the ConnectStreamersPage
+    if (_auth.currentUser != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pushNamed(ConnectStreamersPage.route);
+      });
+    }
+  }
+
   void _signIn() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
