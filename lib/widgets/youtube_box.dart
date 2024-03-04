@@ -44,8 +44,8 @@ class YoutubeBox extends StatelessWidget {
                           SizedBox(
                             height: width * widthRatio * 9 / 16,
                             width: width * widthRatio,
-                            child: Image.network(
-                              'https://i3.ytimg.com/vi/$videoId/hqdefault.jpg',
+                            child: Image.asset(
+                              'assets/youtube_thumbnails/$videoId.jpg',
                               fit: BoxFit.cover,
                             ),
                           ),
