@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class InformationSetter {
-  static void setEmailReminder(String email) {
-    FirebaseFirestore.instance
+  static Future<void> setEmailReminder(String email) async {
+    await FirebaseFirestore.instance
         .collection('informationReminder')
         .doc('email')
         .set({email: true}, SetOptions(merge: true));

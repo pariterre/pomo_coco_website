@@ -114,11 +114,14 @@ class _EmailFormFIeldState extends State<_EmailFormFIeld> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
 
-  void _submit() {
+  Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) return;
 
     // Send the email to the server
-    InformationSetter.setEmailReminder(_emailController.text);
+    await InformationSetter.setEmailReminder(_emailController.text);
+
+    // Clear the form
+    _emailController.clear();
   }
 
   @override
