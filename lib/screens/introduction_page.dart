@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pomo_coco_website/managers/config_manager.dart';
+import 'package:pomo_coco_website/managers/theme_manager.dart';
+import 'package:pomo_coco_website/models/information_setter.dart';
 import 'package:pomo_coco_website/widgets/tab_container.dart';
 import 'package:pomo_coco_website/widgets/youtube_box.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -93,8 +95,85 @@ class IntroductionPage extends StatelessWidget {
             ),
           ])),
           const SizedBox(height: 50),
+          const _EmailFormFIeld(),
+          const SizedBox(height: 50),
         ],
       ),
+    );
+  }
+}
+
+class _EmailFormFIeld extends StatefulWidget {
+  const _EmailFormFIeld();
+
+  @override
+  State<_EmailFormFIeld> createState() => _EmailFormFIeldState();
+}
+
+class _EmailFormFIeldState extends State<_EmailFormFIeld> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+
+  void _submit() {
+    if (!_formKey.currentState!.validate()) return;
+
+    // Send the email to the server
+    InformationSetter.setEmailReminder(_emailController.text);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Rappel', style: Theme.of(context).textTheme.titleSmall),
+        const Text(
+            'Si vous souhaitez vous inscrire à rappel pour l\'événement, vous pouvez '
+            'indiquer votre courriel dans la boite suivante :'),
+        const SizedBox(height: 12),
+        Form(
+          key: _formKey,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Courriel',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value?.isEmpty ?? false) {
+                      return 'Veuillez entrer un courriel';
+                    }
+
+                    if (!RegExp(
+                            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+                        .hasMatch(value!)) {
+                      return 'Veuillez entrer un courriel valide';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(width: 12),
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: ElevatedButton(
+                  onPressed: _submit,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: ThemeManager.instance.secondaryColor,
+                    foregroundColor: Colors.black,
+                    shape: const RoundedRectangleBorder(),
+                  ),
+                  child: const Text('Envoyer'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

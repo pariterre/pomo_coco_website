@@ -12,9 +12,13 @@ service cloud.firestore {
     // Make sure to write security rules for your app before that time, or else
     // all client requests to your Firestore database will be denied until you Update
     // your rules
-    match /{document=**} {
+    match /chatters/{document=**} {
       allow read;
       allow write: if request.auth != null;
+    }
+    match /informationReminder/{document=**} {
+      allow read: if false;
+  	  allow write: if true;
     }
   }
 }
