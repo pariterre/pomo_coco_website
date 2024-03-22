@@ -79,7 +79,12 @@ class _StreamerCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 4),
-                      Text(streamerInfo.description),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: Text.rich(
+                            textAlign: TextAlign.justify,
+                            TextSpan(text: streamerInfo.description)),
+                      ),
                       if (streamerInfo.personalWebSite != null)
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

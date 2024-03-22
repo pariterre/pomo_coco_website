@@ -17,18 +17,24 @@ class ThankingPage extends StatelessWidget {
         children: [
           Text('REMERCIMENTS', style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 12),
-          const Text('Un immense merci aux coanimatrices et coanimateurs de '
-              'l\'événement. Honnêtement, je suis sans mots face à la '
-              'confiance et l\'accueil que vous portez à chaque itération de ce projet. '
-              'Ça me touche sincèrement. Merci!'),
+          const Text.rich(
+              textAlign: TextAlign.justify,
+              TextSpan(
+                  text: 'Un immense merci aux coanimatrices et coanimateurs de '
+                      'l\'événement. Honnêtement, je suis sans mots face à la '
+                      'confiance et l\'accueil que vous portez à chaque itération de ce projet. '
+                      'Ça me touche sincèrement. Merci!')),
           const SizedBox(height: 12),
-          const Text(
-              'Finalement, un grand merci à tous les auditeurs et toutes '
-              'les auditrices pour votre présence et votre support, que '
-              'ce soit pendant ou à l\'extérieur de l\'événement. Vous '
-              'êtes tellement importants et importantes pour nous, vous '
-              'êtes notre motivation.\nUn grand merci à chacun et chacune '
-              'd\'entre vous \u2665'),
+          const Text.rich(
+              textAlign: TextAlign.justify,
+              TextSpan(
+                  text:
+                      'Finalement, un grand merci à tous les auditeurs et toutes '
+                      'les auditrices pour votre présence et votre support, que '
+                      'ce soit pendant ou à l\'extérieur de l\'événement. Vous '
+                      'êtes tellement importants et importantes pour nous, vous '
+                      'êtes notre motivation.\nUn grand merci à chacun et chacune '
+                      'd\'entre vous \u2665')),
           const SizedBox(height: 50),
           Text('Crédits', style: Theme.of(context).textTheme.titleSmall),
           // Put some bullet points
