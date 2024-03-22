@@ -6,6 +6,7 @@ import 'package:pomo_coco_website/managers/chatters_manager.dart';
 import 'package:pomo_coco_website/managers/schedule_manager.dart';
 import 'package:pomo_coco_website/managers/theme_manager.dart';
 import 'package:pomo_coco_website/screens/introduction_page.dart';
+import 'package:pomo_coco_website/screens/mystery_event_page.dart';
 import 'package:pomo_coco_website/screens/prize_page.dart';
 import 'package:pomo_coco_website/screens/schedule_page.dart';
 import 'package:pomo_coco_website/screens/streamers_page.dart';
@@ -33,6 +34,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
           'Animateurs &\nAnimatrices',
           'Horaire',
           'Auditeurs &\nAuditrices',
+          'Activité mystère',
           'Remerciements'
         ];
   late final _openingTabIfEventIsFinished = widget.isAdmistration ? 0 : 3;
@@ -109,6 +111,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                                 isInitialized: _isInitialized,
                                 isAdmistration: widget.isAdmistration,
                               ),
+                              MysteryEventPage(maxWidth: columnWidth),
                               ThankingPage(maxWidth: columnWidth),
                             ],
                     ),
