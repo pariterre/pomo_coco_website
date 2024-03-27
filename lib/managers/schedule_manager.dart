@@ -54,20 +54,20 @@ class ScheduleManager {
         length: const Duration(hours: 4),
         url: 'https://twitch.tv/pariterre'),
     ScheduleInfo(
-        title: 'Pomodoro - WayceUpenFoya',
+        title: 'Pomodoro - MemepAuteure',
         starting: DateTime(2024, 03, 28, 3, 0),
         length: const Duration(hours: 4),
-        url: 'https://twitch.tv/WayceUpenFoya'),
+        url: 'https://twitch.tv/MemepAuteure'),
     ScheduleInfo(
         title: 'Pause discussion',
         starting: DateTime(2024, 03, 28, 7, 0),
         url: 'https://twitch.tv/pariterre',
         length: const Duration(minutes: 30)),
     ScheduleInfo(
-        title: 'Pomodoro - MemepAuteure',
+        title: 'Pomodoro - LaLoutreBurlesque',
         starting: DateTime(2024, 03, 28, 7, 30),
         length: const Duration(hours: 4),
-        url: 'https://twitch.tv/MemepAuteure'),
+        url: 'https://twitch.tv/LaLoutreBurlesque'),
     ScheduleInfo(
         title: 'Table ronde',
         starting: DateTime(2024, 03, 28, 11, 30),

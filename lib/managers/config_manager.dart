@@ -52,6 +52,9 @@ class ConfigManager {
             '👩🏻‍💻Chroniqueuse littéraire, 21 ans📚Lectures en tous genres '
             '📍Suisse ✉️ Contact pro: elidelivre@gmail.com',
         twitchUrl: 'https://www.twitch.tv/elidelivre'),
+    StreamerInfo('LaLoutreBurlesque',
+        description: 'Tant qu\'il y a de la loutre il y a de l\'espoir.',
+        twitchUrl: 'https://www.twitch.tv/LaLoutreBurlesque'),
     StreamerInfo('lejournaldaely',
         description:
             'Amoureuse des livres 📚, du café ☕, du chocolat 🍫 et des chats '
@@ -60,14 +63,6 @@ class ConfigManager {
             'Littéraires, Bilan du mois etc), des séances papotage, des sessions '
             'de loisirs créatifs et un peu de gaming !',
         twitchUrl: 'https://www.twitch.tv/lejournaldaely'),
-    StreamerInfo('WayceUpenFoya',
-        description:
-            'J\'ai lancé cette chaîne pour partager ma passion pour l\'écriture, '
-            'la lecture et toutes les créations artistiques. Même si vous me '
-            'verrez aussi jouer à des jeux vidéos et discuter autour de divers '
-            'sujets, mon but est de partager avec vous ces univers qui me '
-            'bercent depuis maintenant des années.',
-        twitchUrl: 'https://www.twitch.tv/WayceUpenFoya'),
     StreamerInfo('MemepAuteure',
         description:
             'Salut ! Moi c\'est MemepAuteure ! J\'ai 28 ans et je suis auteure '
