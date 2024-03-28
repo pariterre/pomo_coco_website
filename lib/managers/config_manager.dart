@@ -1,3 +1,4 @@
+import 'package:pomo_coco_website/models/prize.dart';
 import 'package:pomo_coco_website/models/streamer_info.dart';
 import 'package:twitch_manager/twitch_manager.dart';
 
@@ -84,6 +85,35 @@ class ConfigManager {
             'voyager plus d\'un ! Bienvenue sur cette chaine, où l\'objectif '
             'est de créer un espace pour écrire ensemble et se motiver.',
         twitchUrl: 'https://www.twitch.tv/audreyama'),
+  ];
+
+  final prizes = [
+    Prize(
+        person: 'MemepAuteure',
+        title: 'Le Retour des Olympiens',
+        url: 'https://www.amazon.fr/s?i=digital-text&rh=p_27%3AM%C3%A9lanie+'
+            'Schietekat&s=relevancerank&text=M%C3%A9lanie+Schietekat&ref=dp_byline_sr_ebooks_1'),
+    Prize(
+        person: 'MemepAuteure',
+        title: 'Nouvelles (Le casino des Limbes & L\'Ange Faucheur)',
+        url: 'https://www.amazon.fr/s?i=digital-text&rh=p_27%3AM%C3%A9lanie+'
+            'Schietekat&s=relevancerank&text=M%C3%A9lanie+Schietekat&ref=dp_byline_sr_ebooks_1'),
+    Prize(
+        person: 'LeJournalDAely',
+        title: 'Marque page de la Team Cupckys',
+        url: 'http://atelierlycrea.wordpress.com/'),
+    Prize(
+        person: 'LeJournalDAely',
+        title: 'Marque page de la Team Cupckys',
+        url: 'http://atelierlycrea.wordpress.com/'),
+    Prize(
+        person: 'eli\'délivre',
+        title: 'Un marque page au choix',
+        url: 'https://accrofils.com/'),
+    Prize(
+        person: 'Piickwiic',
+        title: 'Deux marque-pages spéciale Minette',
+        url: 'https://twitch.tv/piickwiic'),
   ];
 
   ///
